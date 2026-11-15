@@ -12,7 +12,9 @@ LUNAR COMMAND is an interactive, browser-based STEM game that puts learners in c
 Presentation: `Lunar_Command_Demo.pptx` (upload the deck to the NASA project page's permitted external-link field or a public file host; the deck is included in the project ZIP).
 
 ## Link to Final Project
-Live game: https://codememax3.github.io/Lunar-Command/\n\nSource repository: https://github.com/CodemeMax3/Lunar-Command
+Live game: https://codememax3.github.io/Lunar-Command/
+
+Source repository: https://github.com/CodemeMax3/Lunar-Command
 
 ## Detailed Project Description
 LUNAR COMMAND is designed as a junior astronaut mission trainer. At the start of a mission, the learner receives a fixed set of simulated resources and must keep the crew safe until the end of a 30-sol mission. The interface displays live resource meters and a command log. Each sol, the player selects one action: recycle water and air, deploy a solar array, operate a greenhouse, add regolith shielding, enter conservation mode, or maintain critical systems. Actions have costs and benefits across multiple resources. The simulation then applies daily crew consumption and occasional events such as a solar activity alert, dust on solar arrays, greenhouse harvest or thermal stress. If essential resources or crew safety become critically low, the mission can end early. At the end, a debrief displays the score and remaining reserves.
@@ -41,6 +43,6 @@ These resources inform the simulated challenges involving habitation, life suppo
 - HTML, CSS and JavaScript standard browser technologies.
 
 ## Team Information
-Team name: [Enter your team name]
-Team members: [Enter full names]
+Team name: Void Breakers
+Team members: 1 participant (individual/solo entry)
 Challenge: Build a Junior Astronaut Mission Trainer
