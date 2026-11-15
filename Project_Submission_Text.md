@@ -1,7 +1,5 @@
 # NASA Space Apps — Project Submission Text
 
-> Replace bracketed placeholders and verify every public link before submitting.
-
 ## Project Name
 LUNAR COMMAND: Mission Survival Simulator
 
@@ -9,7 +7,7 @@ LUNAR COMMAND: Mission Survival Simulator
 LUNAR COMMAND is an interactive, browser-based STEM game that puts learners in command of a simulated four-person lunar outpost for a 30-sol mission. Players balance oxygen, water, food, battery power, radiation shielding, thermal comfort and crew safety by choosing one engineering action each sol. Daily resource consumption and unexpected mission events demonstrate how improving one system can place pressure on another. The project turns the complex systems thinking behind a lunar habitat into an accessible, replayable learning experience.
 
 ## Link to Project Demo
-Presentation: `Lunar_Command_Demo.pptx` (upload the deck to the NASA project page's permitted external-link field or a public file host; the deck is included in the project ZIP).
+Presentation: upload the attached `Lunar_Command_Void_Breakers_Final.pptx` to the NASA project page if a presentation file is requested.
 
 ## Link to Final Project
 Live game: https://codememax3.github.io/Lunar-Command/
@@ -44,5 +42,5 @@ These resources inform the simulated challenges involving habitation, life suppo
 
 ## Team Information
 Team name: Void Breakers
-Team members: 1 participant (individual/solo entry)
+Team members: Sobin Cherian Sinu (individual/solo participant)
 Challenge: Build a Junior Astronaut Mission Trainer
