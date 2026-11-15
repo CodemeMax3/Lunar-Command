@@ -1,0 +1,31 @@
+# LUNAR COMMAND — Mission Survival Simulator
+
+A browser-based educational game for the NASA Space Apps Challenge prompt “Build a Junior Astronaut Mission Trainer”.
+
+## Run
+Open `index.html` in a modern browser. No server, install, account, or API key is required. The app works offline after download.
+
+## Gameplay
+- Lead a four-person simulated lunar outpost for up to 30 sols.
+- Manage oxygen, water, food, battery power, radiation shielding, thermal comfort and crew safety.
+- Choose one action per sol: recycle, deploy solar array, run greenhouse, add regolith shielding, conserve resources, or maintain systems.
+- Daily consumption and periodic random events create trade-offs.
+- Finish with a mission debrief and score.
+
+## NASA references
+- NASA Moon Base Systems: https://www.nasa.gov/moonbase-systems/
+- NASA Lunar South Pole Environment: https://www.nasa.gov/reference/moonbase-environment/
+- From Apollo to Artemis: https://www.nasa.gov/moonbase-environment-visualization/
+- NASA Science — Weather on the Moon: https://science.nasa.gov/moon/weather-on-the-moon/
+
+NASA references inform the learning scenario. The numerical resource units, action costs, event probabilities and scoring are simplified original game-design assumptions; they are not NASA mission specifications or operational data.
+
+## Contents
+- `index.html` — complete playable simulator
+- `Lunar_Command_Demo.pptx` — seven-slide project demo
+- `Project_Submission_Text.md` — copy-ready text for the NASA project page
+- `README.md` — setup and project notes
+- `UPLOAD_CHECKLIST.md` — final submission checklist
+
+## Suggested improvements before judging
+Test the game in Chrome on laptop and mobile, capture screenshots of gameplay, and upload the HTML or host it as a public GitHub Pages website. Replace the team/member placeholders in the slide deck and submission text with your actual details. Do not claim features or testing you have not completed.
