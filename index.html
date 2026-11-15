@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>LUNAR COMMAND | Mission Survival Simulator</title>
+<style>
+:root{--bg:#070b18;--panel:#101a31;--panel2:#152340;--line:#293a5c;--text:#eef4ff;--muted:#9aaccb;--cyan:#5ce1e6;--blue:#648cff;--violet:#a78bfa;--gold:#ffd166;--red:#ff6b7a;--green:#69e3a5}
+*{box-sizing:border-box}body{margin:0;background:radial-gradient(circle at 80% 0%,#1b2a4d 0,#070b18 45%);font-family:Inter,system-ui,Segoe UI,Arial,sans-serif;color:var(--text);min-height:100vh}
+header{padding:22px clamp(16px,4vw,52px);display:flex;align-items:center;justify-content:space-between;border-bottom:1px solid #263657;background:#080e1dcc;position:sticky;top:0;z-index:4;backdrop-filter:blur(14px)}
+.brand{display:flex;gap:12px;align-items:center}.moon{width:42px;height:42px;border-radius:50%;background:linear-gradient(135deg,#e8f0ff,#8294b6 60%,#465578);box-shadow:0 0 24px #8da9ff55}
+h1{font-size:clamp(18px,3vw,25px);margin:0;letter-spacing:.14em}.brand small{display:block;color:var(--muted);font-size:10px;letter-spacing:.18em;margin-top:3px}
+.pill{border:1px solid #36517d;color:#b9d6ff;padding:8px 12px;border-radius:99px;font-size:12px}
+main{max-width:1250px;margin:auto;padding:26px clamp(14px,3vw,34px) 55px}
+.hero{display:grid;grid-template-columns:1.25fr .75fr;gap:18px;margin-bottom:20px}
+.panel{background:linear-gradient(145deg,#14213aee,#0d1629ee);border:1px solid var(--line);border-radius:18px;padding:20px;box-shadow:0 14px 45px #0003}
+.kicker{color:var(--cyan);font-size:11px;letter-spacing:.2em;font-weight:800}.hero h2{font-size:clamp(27px,4vw,44px);line-height:1.05;margin:10px 0}.hero p{color:#b6c5df;line-height:1.65;max-width:720px}
+.stats{display:grid;grid-template-columns:repeat(3,1fr);gap:10px}.stat{background:#0a1428;border:1px solid #293c60;border-radius:12px;padding:13px}.stat b{display:block;font-size:23px}.stat span{font-size:10px;color:var(--muted);letter-spacing:.1em}
+.layout{display:grid;grid-template-columns:1.45fr .8fr;gap:18px}.section-title{display:flex;justify-content:space-between;align-items:center;margin-bottom:15px}.section-title h3{margin:0;font-size:15px;letter-spacing:.08em}.muted{color:var(--muted);font-size:12px}
+.resource-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:10px}.resource{background:#0b1529;border:1px solid #293b5e;padding:13px;border-radius:12px}.resource .name{font-size:11px;color:var(--muted);letter-spacing:.1em}.resource .value{font-size:22px;font-weight:800;margin:5px 0}.bar{height:6px;background:#253452;border-radius:9px;overflow:hidden}.bar i{display:block;height:100%;border-radius:9px;background:linear-gradient(90deg,var(--cyan),var(--blue))}
+.actions{display:grid;grid-template-columns:repeat(2,1fr);gap:10px}.action{border:1px solid #31496e;border-radius:12px;padding:13px;background:#111f39;color:var(--text);text-align:left;cursor:pointer;transition:.18s}.action:hover{transform:translateY(-2px);border-color:var(--cyan);background:#172a49}.action:disabled{opacity:.35;cursor:not-allowed;transform:none}.action b{display:block;font-size:13px;margin-bottom:5px}.action small{color:var(--muted);font-size:11px;line-height:1.4}
+button.primary{background:linear-gradient(100deg,#4ccbd5,#6c8dff);color:#07101f;border:0;border-radius:10px;padding:12px 17px;font-weight:800;cursor:pointer}button.secondary{background:#162440;color:#dce8ff;border:1px solid #35496b;border-radius:10px;padding:10px 14px;cursor:pointer}
+.event{min-height:88px;background:#0a1428;border:1px solid #2b3d60;border-radius:12px;padding:14px;margin-top:12px}.event strong{color:var(--gold);font-size:12px;letter-spacing:.1em}.event p{margin:7px 0 0;color:#bdcbe1;font-size:13px;line-height:1.5}
+.log{max-height:220px;overflow:auto;display:flex;flex-direction:column;gap:7px}.log div{font-size:12px;color:#b8c7df;border-left:2px solid #5476c4;padding:5px 9px;background:#0b1529}
+.footer{margin-top:18px;display:flex;justify-content:space-between;gap:10px;align-items:center;flex-wrap:wrap}.hidden{display:none!important}
+.modal{position:fixed;inset:0;background:#030713dd;display:grid;place-items:center;padding:20px;z-index:10}.modalbox{max-width:650px;width:100%;background:#111e37;border:1px solid #3c5480;border-radius:18px;padding:25px}.modalbox h2{margin-top:0}.modalbox p,.modalbox li{color:#c3d0e6;line-height:1.6}.modalbox input{background:#071226;border:1px solid #40577e;color:white;padding:12px;border-radius:9px;width:100%;margin:8px 0 15px}
+.end{text-align:center;padding:25px}.end h2{font-size:34px}.score{font-size:52px;color:var(--cyan);font-weight:900}
+a{color:#82dce8}
+@media(max-width:850px){.hero,.layout{grid-template-columns:1fr}.stats{grid-template-columns:repeat(3,1fr)}}@media(max-width:520px){.resource-grid{grid-template-columns:repeat(2,1fr)}.actions{grid-template-columns:1fr}.stats{grid-template-columns:1fr 1fr}header{padding:14px}}
+</style></head>
+<body>
+<header><div class="brand"><div class="moon"></div><div><h1>LUNAR COMMAND</h1><small>MISSION SURVIVAL SIMULATOR</small></div></div><div class="pill" id="missionBadge">MISSION NOT STARTED</div></header>
+<main>
+<section class="hero">
+ <div class="panel"><div class="kicker">ARTEMIS GENERATION // TRAINING SIMULATION</div><h2>One outpost.<br>Thirty lunar days.<br>Every choice matters.</h2>
+ <p>Lead a four-person research crew at a simulated lunar south-pole outpost. Balance life support, energy, food production and radiation protection. Make trade-offs, respond to mission events and keep your crew safe until extraction.</p>
+ <button class="primary" id="startBtn">▶ START MISSION</button> <button class="secondary" id="howBtn">How to play</button></div>
+ <div class="panel"><div class="section-title"><h3>MISSION PARAMETERS</h3><span class="muted">TRAINING SCENARIO</span></div><div class="stats"><div class="stat"><b>04</b><span>CREW</span></div><div class="stat"><b>30</b><span>MISSION SOLS</span></div><div class="stat"><b>01</b><span>OUTPOST</span></div></div>
+ <div class="event"><strong>MISSION BRIEF</strong><p>Supplies are limited. A successful commander plans ahead, protects critical systems and adapts when conditions change.</p></div></div>
+</section>
+<div id="game" class="layout hidden">
+ <div class="panel">
+  <div class="section-title"><h3>OUTPOST SYSTEMS</h3><span class="muted" id="solLabel">SOL 1 / 30</span></div>
+  <div class="resource-grid" id="resources"></div>
+  <div class="section-title" style="margin-top:22px"><h3>COMMAND DECISIONS</h3><span class="muted">Choose one action per sol</span></div>
+  <div class="actions" id="actions"></div>
+  <div class="event" id="eventBox"><strong>MISSION CONTROL</strong><p id="eventText">Your crew is ready. Choose your first action.</p></div>
+  <div class="footer"><span class="muted" id="statusText">Awaiting commander decision</span><button class="primary" id="nextBtn" disabled>ADVANCE SOL →</button></div>
+ </div>
+ <aside class="panel">
+  <div class="section-title"><h3>MISSION STATUS</h3><span class="muted" id="riskLabel">STABLE</span></div>
+  <div class="stats" style="grid-template-columns:1fr 1fr"><div class="stat"><b id="score">0</b><span>MISSION SCORE</span></div><div class="stat"><b id="crewHealth">100%</b><span>CREW SAFETY</span></div></div>
+  <div class="section-title" style="margin-top:20px"><h3>COMMAND LOG</h3></div><div class="log" id="log"></div>
+  <div class="footer"><button class="secondary" id="restartBtn">Restart mission</button><button class="secondary" id="sourcesBtn">NASA sources</button></div>
+ </aside>
+</div>
+<div id="result" class="panel end hidden"></div>
+<section class="panel" style="margin-top:18px"><div class="section-title"><h3>WHAT YOU'RE LEARNING</h3><span class="muted">ENGINEERING TRADE-OFFS</span></div>
+ <div class="resource-grid">
+ <div class="resource"><div class="name">LIFE SUPPORT</div><p class="muted">Oxygen and water are essential; conservation and recycling protect reserves.</p></div>
+ <div class="resource"><div class="name">POWER</div><p class="muted">Solar generation, storage and demand must be balanced across changing light conditions.</p></div>
+ <div class="resource"><div class="name">FOOD</div><p class="muted">Food production can reduce resupply needs but consumes power and water.</p></div>
+ <div class="resource"><div class="name">RADIATION</div><p class="muted">Shielding helps reduce exposure from the space environment.</p></div>
+ <div class="resource"><div class="name">THERMAL CONTROL</div><p class="muted">Extreme lunar temperatures make heating and cooling important.</p></div>
+ <div class="resource"><div class="name">SYSTEMS THINKING</div><p class="muted">A decision that helps one system can create pressure on another.</p></div>
+ </div></section>
+<p class="muted" style="text-align:center;margin:24px 0">Educational simulation only. Resource values and outcomes are simplified game mechanics, not flight-qualified engineering data.</p>
+</main>
+<div class="modal hidden" id="modal"><div class="modalbox"><h2 id="modalTitle">How to play</h2><div id="modalBody"></div><button class="primary" id="closeModal">GOT IT</button></div></div>
+<script>
+const $=id=>document.getElementById(id);
+const initial=()=>({sol:1,oxygen:100,water:100,food:100,power:100,shield:35,heat:75,health:100,score:0,action:null,started:false,over:false,log:[],event:"Your crew is ready. Choose your first action.",eventTitle:"MISSION CONTROL"});
+let s=initial();
+const defs=[
+ ['oxygen','OXYGEN','%','Oxygen reserve'],['water','WATER','%','Water reserve'],['food','FOOD','%','Food reserve'],['power','POWER','%','Battery reserve'],['shield','RADIATION SHIELD','%','Protection level'],['heat','THERMAL COMFORT','%','Habitat temperature control']
+];
+const actions=[
+ {id:'recycle',name:'Recycle water & air',desc:'Recover life-support resources. Uses power.',cost:{power:9},gain:{water:18,oxygen:12},score:8},
+ {id:'solar',name:'Deploy solar array',desc:'Increase stored energy. Takes crew time.',cost:{},gain:{power:24},score:7},
+ {id:'greenhouse',name:'Run greenhouse',desc:'Grow food and generate oxygen. Uses water and power.',cost:{water:12,power:12},gain:{food:22,oxygen:7},score:10},
+ {id:'shield',name:'Add regolith shielding',desc:'Improve radiation protection. Uses power.',cost:{power:8},gain:{shield:20},score:8},
+ {id:'conserve',name:'Conservation mode',desc:'Reduce resource use for the next sol.',cost:{},gain:{water:5,food:5,oxygen:5,power:5},score:5},
+ {id:'maintain',name:'Maintain critical systems',desc:'Restore thermal comfort and crew wellbeing.',cost:{power:7},gain:{heat:18,health:8},score:7}
+];
+const events=[
+ {title:'SOLAR ACTIVITY ALERT',text:'Mission control reports elevated solar activity. Radiation protection is especially important.',effect:{shield:-8,health:-2},note:'Solar activity reduced shielding and crew safety.'},
+ {title:'DUST ON SOLAR ARRAYS',text:'Lunar dust has reduced power generation. Schedule maintenance soon.',effect:{power:-12},note:'Dust accumulation reduced stored power.'},
+ {title:'GREENHOUSE HARVEST',text:'A healthy crop cycle produced extra food for the crew.',effect:{food:12},note:'Greenhouse harvest added food reserves.'},
+ {title:'THERMAL STRESS',text:'Temperature regulation is working harder than expected.',effect:{heat:-14,power:-5},note:'Thermal stress reduced comfort and power.'},
+ {title:'WATER RECOVERY SUCCESS',text:'A filtration cycle recovered additional water.',effect:{water:10},note:'Water recovery improved reserves.'}
+];
+const clamp=n=>Math.max(0,Math.min(100,n));
+function log(t){s.log.unshift(`SOL ${s.sol}: ${t}`);s.log=s.log.slice(0,18)}
+function render(){
+ $('missionBadge').textContent=s.over?'MISSION COMPLETE':s.started?'MISSION ACTIVE':'MISSION NOT STARTED';
+ $('solLabel').textContent=`SOL ${Math.min(s.sol,30)} / 30`;$('score').textContent=s.score;$('crewHealth').textContent=`${s.health}%`;
+ $('riskLabel').textContent=s.health<50?'CRITICAL':s.oxygen<25||s.water<25||s.food<25?'CAUTION':'STABLE';
+ $('resources').innerHTML=defs.map(([k,n,u,d])=>`<div class="resource"><div class="name">${n}</div><div class="value">${Math.round(s[k])}${u}</div><div class="bar"><i style="width:${s[k]}%"></i></div><div class="muted">${d}</div></div>`).join('');
+ $('actions').innerHTML=actions.map(a=>`<button class="action" data-action="${a.id}" ${s.action||s.over?'disabled':''}><b>${a.name}</b><small>${a.desc}</small></button>`).join('');
+ document.querySelectorAll('[data-action]').forEach(b=>b.onclick=()=>choose(b.dataset.action));
+ $('eventBox').querySelector('strong').textContent=s.eventTitle;$('eventText').textContent=s.event;
+ $('statusText').textContent=s.action?'Decision recorded. Advance when ready.':'Awaiting commander decision';$('nextBtn').disabled=!s.action||s.over;
+ $('log').innerHTML=s.log.map(x=>`<div>${x}</div>`).join('');
+ if(s.over){$('result').classList.remove('hidden');showResult()}else $('result').classList.add('hidden');
+}
+function choose(id){const a=actions.find(x=>x.id===id);if(!a||s.action||s.over)return;
+ for(const [k,v] of Object.entries(a.cost))if(s[k]<v){s.eventTitle='INSUFFICIENT RESOURCES';s.event=`Not enough ${k}. Choose another action or review your strategy.`;render();return}
+ for(const [k,v] of Object.entries(a.cost))s[k]=clamp(s[k]-v);
+ for(const [k,v] of Object.entries(a.gain))s[k]=clamp(s[k]+v);
+ s.action=id;s.score+=a.score;log(`Commander selected: ${a.name}.`);s.eventTitle='ACTION CONFIRMED';s.event=`${a.name} completed. Review your remaining reserves, then advance.`;render();
+}
+function advance(){
+ if(!s.action||s.over)return;
+ // Daily consumption for four-person crew: deliberately normalized game units.
+ s.oxygen=clamp(s.oxygen-7);s.water=clamp(s.water-8);s.food=clamp(s.food-7);s.power=clamp(s.power-8);s.heat=clamp(s.heat-2);
+ let penalty=0;
+ if(s.oxygen<20)penalty+=12;if(s.water<20)penalty+=10;if(s.food<20)penalty+=8;if(s.power<15)penalty+=8;if(s.shield<15)penalty+=7;if(s.heat<20)penalty+=8;
+ s.health=clamp(s.health-penalty+ (s.heat>45?1:0));
+ if(s.sol%4===0){const e=events[Math.floor(Math.random()*events.length)];for(const [k,v] of Object.entries(e.effect))s[k]=clamp(s[k]+v);s.eventTitle=e.title;s.event=e.text;log(e.note)}
+ else{s.eventTitle='DAILY SYSTEMS REPORT';s.event='One sol has passed. Check the resource levels and choose a strategy for the next day.'}
+ s.sol++;s.action=null;
+ if(s.health<=0||[s.oxygen,s.water,s.food].some(v=>v<=0)||s.sol>30){s.over=true;log(s.health<=0?'Crew safety fell to zero. Mission aborted.':'Thirty sols completed. Mission window closed.')}
+ render();
+}
+function start(){s=initial();s.started=true;log('Mission initiated. Four crew members are aboard the lunar outpost.');$('game').classList.remove('hidden');render();$('game').scrollIntoView({behavior:'smooth',block:'start'})}
+function showResult(){
+ const survived=s.sol>30&&s.health>0&&s.oxygen>0&&s.water>0&&s.food>0;
+ const rating=survived?'MISSION SURVIVED':s.health>0?'MISSION ENDED EARLY':'MISSION ABORTED';
+ $('result').innerHTML=`<div class="kicker">MISSION DEBRIEF</div><h2>${rating}</h2><div class="score">${s.score}</div><p class="muted">FINAL MISSION SCORE</p><p>${survived?'Excellent command. Your crew completed the 30-sol training mission.':'Your crew could not complete the full mission. Review which resource became critical and try a different strategy.'}</p><div class="resource-grid" style="text-align:left">${defs.map(([k,n])=>`<div class="resource"><div class="name">${n}</div><div class="value">${Math.round(s[k])}%</div></div>`).join('')}</div><br><button class="primary" onclick="start()">RUN ANOTHER MISSION</button>`;
+}
+function modal(title,body){$('modalTitle').textContent=title;$('modalBody').innerHTML=body;$('modal').classList.remove('hidden')}
+$('startBtn').onclick=start;$('nextBtn').onclick=advance;$('restartBtn').onclick=start;
+$('howBtn').onclick=()=>modal('HOW TO PLAY',`<p><b>1.</b> Start the 30-sol mission with four crew members.</p><p><b>2.</b> Choose one command action each sol. Each action changes multiple resources.</p><p><b>3.</b> Press ADVANCE SOL. Daily crew consumption and occasional mission events will change your reserves.</p><p><b>4.</b> Keep oxygen, water, food, power, heat and shielding above critical levels. Protect crew safety and survive all 30 sols.</p><p><b>Important:</b> This is a simplified educational model. It is not a real mission-planning tool.</p>`);
+$('sourcesBtn').onclick=()=>modal('NASA REFERENCE MATERIAL',`<p>The scenario is informed by NASA's public Moon Base and lunar-environment resources:</p><ul><li><a target="_blank" href="https://www.nasa.gov/moonbase-systems/">NASA Moon Base Systems</a> — habitation and life-support context.</li><li><a target="_blank" href="https://www.nasa.gov/reference/moonbase-environment/">NASA Lunar South Pole Environment</a> — water ice, lunar dust and environmental challenges.</li><li><a target="_blank" href="https://www.nasa.gov/moonbase-environment-visualization/">From Apollo to Artemis: Exploring the Lunar Surface</a> — visualization of lunar environmental constraints.</li><li><a target="_blank" href="https://science.nasa.gov/moon/weather-on-the-moon/">NASA Science: Weather on the Moon</a> — temperature extremes and radiation context.</li></ul><p>NASA resources inform the learning scenario; the numerical resource units and event probabilities are original game-design assumptions, not NASA operational data.</p>`);
+$('closeModal').onclick=()=>$('modal').classList.add('hidden');
+render();
+</script></body></html>
