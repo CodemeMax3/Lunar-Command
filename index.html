@@ -78,7 +78,7 @@ const actions=[
  {id:'solar',name:'Deploy solar array',desc:'Increase stored energy. Takes crew time.',cost:{},gain:{power:24},score:7},
  {id:'greenhouse',name:'Run greenhouse',desc:'Grow food and generate oxygen. Uses water and power.',cost:{water:12,power:12},gain:{food:22,oxygen:7},score:10},
  {id:'shield',name:'Add regolith shielding',desc:'Improve radiation protection. Uses power.',cost:{power:8},gain:{shield:20},score:8},
- {id:'conserve',name:'Conservation mode',desc:'Reduce resource use for the next sol.',cost:{},gain:{water:5,food:5,oxygen:5,power:5},score:5},
+ {id:'conserve',name:'Conservation mode',desc:'Reduce resource use for the next sol.',cost:{},gain:{},score:5},
  {id:'maintain',name:'Maintain critical systems',desc:'Restore thermal comfort and crew wellbeing.',cost:{power:7},gain:{heat:18,health:8},score:7}
 ];
 const events=[
@@ -111,7 +111,7 @@ function choose(id){const a=actions.find(x=>x.id===id);if(!a||s.action||s.over)r
 function advance(){
  if(!s.action||s.over)return;
  // Daily consumption for four-person crew: deliberately normalized game units.
- const reducedConsumption=s.conserveNext;s.oxygen=clamp(s.oxygen-(reducedConsumption?4:7));s.water=clamp(s.water-(reducedConsumption?4:8));s.food=clamp(s.food-(reducedConsumption?4:7));s.power=clamp(s.power-(reducedConsumption?4:8));s.heat=clamp(s.heat-(reducedConsumption?1:2));s.conserveNext=false;
+ const reducedConsumption=s.conserveNext;s.oxygen=clamp(s.oxygen-(reducedConsumption?2:4));s.water=clamp(s.water-(reducedConsumption?2:5));s.food=clamp(s.food-(reducedConsumption?2:4));s.power=clamp(s.power-(reducedConsumption?2:5));s.heat=clamp(s.heat-(reducedConsumption?0:1));s.conserveNext=false;
  let penalty=0;
  if(s.oxygen<20)penalty+=12;if(s.water<20)penalty+=10;if(s.food<20)penalty+=8;if(s.power<15)penalty+=8;if(s.shield<15)penalty+=7;if(s.heat<20)penalty+=8;
  s.health=clamp(s.health-penalty+ (s.heat>45?1:0));
