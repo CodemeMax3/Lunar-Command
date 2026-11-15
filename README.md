@@ -28,6 +28,8 @@ NASA references inform the learning scenario. The numerical resource units, acti
 
 The seven-slide PowerPoint demo is included in the complete submission ZIP package, available separately from the repository.
 
+The GitHub Pages deployment workflow publishes this static site from the `main` branch.
+
 ## Publish as a live website
 A GitHub Actions deployment workflow is included at `.github/workflows/deploy-pages.yml`. To activate GitHub Pages for this repository, open **Settings → Pages** and set **Build and deployment → Source** to **GitHub Actions**. The workflow then publishes the root `index.html` after a push to `main`; the expected site address is `https://codememax3.github.io/Lunar-Command/`.
 
