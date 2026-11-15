@@ -20,12 +20,13 @@ Open `index.html` in a modern browser. No server, install, account, or API key i
 
 NASA references inform the learning scenario. The numerical resource units, action costs, event probabilities and scoring are simplified original game-design assumptions; they are not NASA mission specifications or operational data.
 
-## Contents
+## Repository contents
 - `index.html` — complete playable simulator
-- `Lunar_Command_Demo.pptx` — seven-slide project demo
 - `Project_Submission_Text.md` — copy-ready text for the NASA project page
-- `README.md` — setup and project notes
 - `UPLOAD_CHECKLIST.md` — final submission checklist
+- `README.md` — setup and project notes
+
+The seven-slide PowerPoint demo is included in the complete submission ZIP package, available separately from the repository.
 
 ## Suggested improvements before judging
-Test the game in Chrome on laptop and mobile, capture screenshots of gameplay, and upload the HTML or host it as a public GitHub Pages website. Replace the team/member placeholders in the slide deck and submission text with your actual details. Do not claim features or testing you have not completed.
+Test the game in Chrome on laptop and mobile, capture screenshots of gameplay, and optionally host the app with GitHub Pages. Replace the team/member placeholders in the slide deck and submission text with your actual details. Do not claim features or testing you have not completed.
