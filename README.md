@@ -1,6 +1,6 @@
 # LUNAR COMMAND — Mission Survival Simulator
 
-A browser-based educational game for the NASA Space Apps Challenge prompt “Build a Junior Astronaut Mission Trainer”.
+A browser-based educational game for the NASA Space Apps Challenge prompt “Build a Junior Astronaut Mission Trainer”.\n\n**Live game:** https://codememax3.github.io/Lunar-Command/
 
 ## Run
 Open `index.html` in a modern browser. No server, install, account, or API key is required. The app works offline after download.
@@ -34,4 +34,4 @@ The GitHub Pages deployment workflow publishes this static site from the `main` 
 A GitHub Actions deployment workflow is included at `.github/workflows/deploy-pages.yml`. To activate GitHub Pages for this repository, open **Settings → Pages** and set **Build and deployment → Source** to **GitHub Actions**. The workflow then publishes the root `index.html` after a push to `main`; the expected site address is `https://codememax3.github.io/Lunar-Command/`.
 
 ## Suggested improvements before judging
-Test the game in Chrome on laptop and mobile, capture screenshots of gameplay, and once Pages is enabled, test the public website link. Replace the team/member placeholders in the slide deck and submission text with your actual details. Do not claim features or testing you have not completed.
+Test the game in Chrome on laptop and mobile, capture screenshots of gameplay, and verify the public website link. Replace the team/member placeholders in the slide deck and submission text with your actual details. Do not claim features or testing you have not completed.
