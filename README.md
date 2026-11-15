@@ -28,5 +28,8 @@ NASA references inform the learning scenario. The numerical resource units, acti
 
 The seven-slide PowerPoint demo is included in the complete submission ZIP package, available separately from the repository.
 
+## Publish as a live website
+A GitHub Actions deployment workflow is included at `.github/workflows/deploy-pages.yml`. To activate GitHub Pages for this repository, open **Settings → Pages** and set **Build and deployment → Source** to **GitHub Actions**. The workflow then publishes the root `index.html` after a push to `main`; the expected site address is `https://codememax3.github.io/Lunar-Command/`.
+
 ## Suggested improvements before judging
-Test the game in Chrome on laptop and mobile, capture screenshots of gameplay, and optionally host the app with GitHub Pages. Replace the team/member placeholders in the slide deck and submission text with your actual details. Do not claim features or testing you have not completed.
+Test the game in Chrome on laptop and mobile, capture screenshots of gameplay, and once Pages is enabled, test the public website link. Replace the team/member placeholders in the slide deck and submission text with your actual details. Do not claim features or testing you have not completed.
