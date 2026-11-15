@@ -1,11 +1,11 @@
 # Final upload checklist
 
 - [ ] Replace `[TEAM NAME]`, `[MEMBER NAME(S)]` and team details.
-- [ ] Open `index.html` in Chrome and play through at least one full mission.
-- [ ] Check the layout on a phone and a laptop.
-- [ ] Upload the project to a public GitHub repository; optionally enable GitHub Pages for a live app link.
+- [x] Open the live app in a browser and complete a full 30-sol mission test.
+- [x] Check the responsive layout at a mobile viewport; also test on your own phone and laptop before submission.
+- [x] Upload the project to the public GitHub repository and publish it with GitHub Pages.
 - [ ] Upload the seven-slide deck to a public cloud location or export it as PDF and share a public link.
-- [ ] Test both links in a private/incognito browser with no sign-in.
+- [ ] Test the live app and public presentation link in a private/incognito browser with no sign-in.
 - [ ] Add 2–3 real screenshots of the running app to your project page (not AI-generated screenshots).
 - [ ] Fill every required NASA project page field in English.
 - [ ] Disclose any SI/AI assistance accurately. Add visible labels to any AI-generated images/audio/video used.
