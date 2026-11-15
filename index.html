@@ -68,7 +68,7 @@ a{color:#82dce8}
 <div class="modal hidden" id="modal"><div class="modalbox"><h2 id="modalTitle">How to play</h2><div id="modalBody"></div><button class="primary" id="closeModal">GOT IT</button></div></div>
 <script>
 const $=id=>document.getElementById(id);
-const initial=()=>({sol:1,oxygen:100,water:100,food:100,power:100,shield:35,heat:75,health:100,score:0,action:null,started:false,over:false,log:[],event:"Your crew is ready. Choose your first action.",eventTitle:"MISSION CONTROL"});
+const initial=()=>({sol:1,oxygen:100,water:100,food:100,power:100,shield:35,heat:75,health:100,score:0,action:null,conserveNext:false,started:false,over:false,log:[],event:"Your crew is ready. Choose your first action.",eventTitle:"MISSION CONTROL"});
 let s=initial();
 const defs=[
  ['oxygen','OXYGEN','%','Oxygen reserve'],['water','WATER','%','Water reserve'],['food','FOOD','%','Food reserve'],['power','POWER','%','Battery reserve'],['shield','RADIATION SHIELD','%','Protection level'],['heat','THERMAL COMFORT','%','Habitat temperature control']
@@ -106,12 +106,12 @@ function choose(id){const a=actions.find(x=>x.id===id);if(!a||s.action||s.over)r
  for(const [k,v] of Object.entries(a.cost))if(s[k]<v){s.eventTitle='INSUFFICIENT RESOURCES';s.event=`Not enough ${k}. Choose another action or review your strategy.`;render();return}
  for(const [k,v] of Object.entries(a.cost))s[k]=clamp(s[k]-v);
  for(const [k,v] of Object.entries(a.gain))s[k]=clamp(s[k]+v);
- s.action=id;s.score+=a.score;log(`Commander selected: ${a.name}.`);s.eventTitle='ACTION CONFIRMED';s.event=`${a.name} completed. Review your remaining reserves, then advance.`;render();
+ s.action=id;if(id==='conserve')s.conserveNext=true;s.score+=a.score;log(`Commander selected: ${a.name}.`);s.eventTitle='ACTION CONFIRMED';s.event=`${a.name} completed. Review your remaining reserves, then advance.`;render();
 }
 function advance(){
  if(!s.action||s.over)return;
  // Daily consumption for four-person crew: deliberately normalized game units.
- s.oxygen=clamp(s.oxygen-7);s.water=clamp(s.water-8);s.food=clamp(s.food-7);s.power=clamp(s.power-8);s.heat=clamp(s.heat-2);
+ const reducedConsumption=s.conserveNext;s.oxygen=clamp(s.oxygen-(reducedConsumption?4:7));s.water=clamp(s.water-(reducedConsumption?4:8));s.food=clamp(s.food-(reducedConsumption?4:7));s.power=clamp(s.power-(reducedConsumption?4:8));s.heat=clamp(s.heat-(reducedConsumption?1:2));s.conserveNext=false;
  let penalty=0;
  if(s.oxygen<20)penalty+=12;if(s.water<20)penalty+=10;if(s.food<20)penalty+=8;if(s.power<15)penalty+=8;if(s.shield<15)penalty+=7;if(s.heat<20)penalty+=8;
  s.health=clamp(s.health-penalty+ (s.heat>45?1:0));
